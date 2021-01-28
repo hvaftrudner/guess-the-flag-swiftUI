@@ -51,24 +51,18 @@ struct ContentView: View {
             }
         }
         .alert(isPresented: $showingScore) {
-            if scoreTitle == "Correct"{
-                return Alert(title: Text(scoreTitle), message: Text("Your score is \(userScore)"), dismissButton:   .default(Text("Continue")) {
-                        self.askQuestion()
-                })
-            } else {
-                return Alert(title: Text(scoreTitle), message: Text("Your score is \(userScore)"), dismissButton:   .default(Text("Continue")) {
-                        self.askQuestion()
-                })
-            }
-            
+            Alert(title: Text(scoreTitle), message: Text("Your score is \(userScore)"), dismissButton:   .default(Text("Continue")) {
+                    self.askQuestion()
+            })
         }
     }
+    
     func flagTapped(_ number: Int){
         if number == correctAnswer {
             scoreTitle = "Correct"
             userScore += 1
         } else {
-            scoreTitle = "Wrong"
+            scoreTitle = "Wrong thats the flag of \(countries[number])"
             userScore -= 1
         }
         showingScore = true
